@@ -39,11 +39,11 @@ st.markdown("""
         margin-bottom: 1rem;
     }
     .section {
-        padding: 1.5rem;
+        padding: 0.1rem;
         border-radius: 0.5rem;
-        background-color: #f8f9fa;
+        background-color: #1E88E5;
         margin-bottom: 2rem;
-        border-left: 4px solid #1E88E5;
+        border-left: 1px solid #1E88E5;
     }
     .info-box {
         padding: 1rem;
@@ -53,18 +53,18 @@ st.markdown("""
         border-left: 4px solid #1E88E5;
     }
     .warning-box {
-        padding: 1rem;
-        border-radius: 0.5rem;
-        background-color: #fff3e0;
-        margin-bottom: 1rem;
-        border-left: 4px solid #FF9800;
+        # padding: 1rem;
+        # border-radius: 0.5rem;
+        # background-color: #fff3e0;
+        # margin-bottom: 1rem;
+        # border-left: 4px solid #FF9800;
     }
     .success-box {
-        padding: 1rem;
-        border-radius: 0.5rem;
-        background-color: #e8f5e9;
-        margin-bottom: 1rem;
-        border-left: 4px solid #4CAF50;
+        # padding: 1rem;
+        # border-radius: 0.5rem;
+        # background-color: #e8f5e9;
+        # margin-bottom: 1rem;
+        # border-left: 4px solid #4CAF50;
     }
     .stPlotlyChart {
         background-color: white;
@@ -80,7 +80,7 @@ st.markdown('<h1 class="main-header">Bangkok PM2.5 Clustering Analysis</h1>', un
 
 # Sidebar
 with st.sidebar:
-    st.image("https://via.placeholder.com/150x150.png?text=BKK+PM2.5", width=150)
+    st.image("data/istockphoto-1503181890-1024x1024.jpg", width=150)
     st.markdown("## Navigation")
     st.markdown("- [Data Overview](#data-overview)")
     st.markdown("- [Data Preprocessing](#data-preprocessing)")
@@ -98,15 +98,10 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("### Data Source")
     st.markdown("Data from air quality monitoring stations in Bangkok, Thailand")
-
 # Main content
-st.markdown('<div class="info-box">', unsafe_allow_html=True)
-st.markdown("""
-This application analyzes PM2.5 data from various air quality monitoring stations in Bangkok and its vicinity.
-The analysis includes data preprocessing, clustering using K-means, and visualization of results to identify patterns
-in air quality across different locations.
-""")
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown('<div class="info-box">'
+'   <p>This application analyzes PM2.5 data from various air quality monitoring stations in Bangkok and its vicinity.<br>The analysis includes data preprocessing, clustering using K-means, and visualization of results to identify patterns in air quality across different locations.'
+'   </p></div>', unsafe_allow_html=True)
 
 @st.cache_data
 def load_data():
@@ -126,7 +121,7 @@ if df is None:
 
 # Display the raw data
 st.markdown('<h2 class="sub-header" id="data-overview">Data Overview</h2>', unsafe_allow_html=True)
-st.markdown('<div class="section">', unsafe_allow_html=True)
+# st.markdown('<div class="section">', unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 with col1:
@@ -152,7 +147,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # Data Preprocessing
 st.markdown('<h2 class="sub-header" id="data-preprocessing">Data Preprocessing</h2>', unsafe_allow_html=True)
-st.markdown('<div class="section">', unsafe_allow_html=True)
+# st.markdown('<div class="section">', unsafe_allow_html=True)
 
 # Convert date and time columns if needed
 if 'วันที่' in df.columns and 'ช่วงเวลา' in df.columns:
@@ -177,10 +172,10 @@ numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
 if 'No.' in numeric_cols:
     numeric_cols.remove('No.')
 
-st.markdown('<div class="info-box">', unsafe_allow_html=True)
+# st.markdown('<div class="info-box">', fe_allow_htunsaml=True)
 st.write("**Feature Selection**")
 st.write(f"✅ Selected {len(numeric_cols)} numeric columns for clustering analysis")
-st.markdown('</div>', unsafe_allow_html=True)
+# st.markdown('</div>', unsafe_allow_html=True)
 
 # Handle missing values
 missing_values = df[numeric_cols].isna().sum()
@@ -204,12 +199,12 @@ else:
     df_clean = df[numeric_cols]
 
 # Standardize the data
-st.markdown('<div class="info-box">', unsafe_allow_html=True)
+# st.markdown('<div class="info-box">', unsafe_allow_html=True)
 st.write("**Data Standardization**")
 scaler = StandardScaler()
 scaled_data = scaler.fit_transform(df_clean)
 st.write("✅ Data standardized using StandardScaler")
-st.markdown('</div>', unsafe_allow_html=True)
+# st.markdown('</div>', unsafe_allow_html=True)
 
 # Show a sample of the standardized data
 with st.expander("View Standardized Data Sample"):
@@ -239,7 +234,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # Elbow Method
 st.markdown('<h2 class="sub-header" id="elbow-method">Elbow Method</h2>', unsafe_allow_html=True)
-st.markdown('<div class="section">', unsafe_allow_html=True)
+# st.markdown('<div class="section">', unsafe_allow_html=True)
 
 st.write("Finding the optimal number of clusters using the Elbow Method")
 
@@ -295,7 +290,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # Perform K-means clustering with the selected k
 st.markdown('<h2 class="sub-header" id="clustering-analysis">K-means Clustering Analysis</h2>', unsafe_allow_html=True)
-st.markdown('<div class="section">', unsafe_allow_html=True)
+# st.markdown('<div class="section">', unsafe_allow_html=True)
 
 kmeans = KMeans(n_clusters=optimal_k, init='k-means++', random_state=42, n_init=10)
 clusters = kmeans.fit_predict(scaled_data)
@@ -489,7 +484,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # Summary and Insights
 st.markdown('<h2 class="sub-header" id="summary-and-insights">Summary and Insights</h2>', unsafe_allow_html=True)
-st.markdown('<div class="section">', unsafe_allow_html=True)
+# st.markdown('<div class="section">', unsafe_allow_html=True)
 
 # Calculate the average PM2.5 values for each cluster
 cluster_means = df.groupby('Cluster')[numeric_cols].mean()
@@ -659,7 +654,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # Download section
 st.markdown('<h2 class="sub-header">Download Results</h2>', unsafe_allow_html=True)
-st.markdown('<div class="section">', unsafe_allow_html=True)
+# st.markdown('<div class="section">', unsafe_allow_html=True)
     
 # Create a CSV with the clusters
 @st.cache_data
