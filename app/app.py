@@ -80,7 +80,7 @@ st.markdown('<h1 class="main-header">Bangkok PM2.5 Clustering Analysis</h1>', un
 
 # Sidebar
 with st.sidebar:
-    st.image("https://github.com/VizKey01/BangkokPM2.5Check/blob/main/app/data/istockphoto-1503181890-1024x1024.jpg?raw=true", width=150)
+    st.image("https://github.com/VizKey01/BangkokPM2.5Check/blob/main/app/data/istockphoto-1503181890-1024x1024.jpg?raw=true", width=300)
     # st.image("data/istockphoto-1503181890-1024x1024.jpg", width=150)
     st.markdown("## Navigation")
     st.markdown("- [Data Overview](#data-overview)")
