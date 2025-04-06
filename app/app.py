@@ -80,7 +80,8 @@ st.markdown('<h1 class="main-header">Bangkok PM2.5 Clustering Analysis</h1>', un
 
 # Sidebar
 with st.sidebar:
-    st.image("data/istockphoto-1503181890-1024x1024.jpg", width=150)
+    st.image("https://github.com/VizKey01/BangkokPM2.5Check/blob/main/app/data/istockphoto-1503181890-1024x1024.jpg?raw=true", width=150)
+    # st.image("data/istockphoto-1503181890-1024x1024.jpg", width=150)
     st.markdown("## Navigation")
     st.markdown("- [Data Overview](#data-overview)")
     st.markdown("- [Data Preprocessing](#data-preprocessing)")
@@ -106,7 +107,7 @@ st.markdown('<div class="info-box">'
 @st.cache_data
 def load_data():
     """Load data from CSV file in data directory"""
-    file_path = os.path.join("data", "pm25.csv")
+    file_path = "https://raw.githubusercontent.com/VizKey01/BangkokPM2.5Check/main/app/data/pm25.csv"
     try:
         df = pd.read_csv(file_path)
         return df
